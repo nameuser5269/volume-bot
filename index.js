@@ -5,6 +5,11 @@ import { filterBoomStocks } from './filter.js';
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
 const CHANNEL_ID = process.env.DISCORD_CHANNEL_ID;
 
+if (!DISCORD_TOKEN || !CHANNEL_ID) {
+  console.error("❌ Token 或頻道 ID 沒有設定！");
+  process.exit(1);
+}
+
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.once('ready', async () => {
@@ -14,6 +19,11 @@ client.once('ready', async () => {
     const boom = filterBoomStocks(data);
 
     const channel = await client.channels.fetch(CHANNEL_ID);
+    if (!channel) {
+      console.error("❌ 找不到頻道，請檢查 CHANNEL_ID 是否正確");
+      return;
+    }
+
     if (boom.length === 0) {
       await channel.send('📉 今天沒有爆量股');
     } else {
@@ -23,10 +33,14 @@ client.once('ready', async () => {
       await channel.send('📈 **今日爆量股**\n' + msg);
     }
   } catch (err) {
-    console.error("❌ 發生錯誤：", err);
+    console.error("❌ 執行過程出錯：", err);
   } finally {
     client.destroy();
   }
 });
 
-client.login(DISCORD_TOKEN);
+client.login(DISCORD_TOKEN).catch(err => {
+  console.error("❌ Discord 登入失敗，可能是 Token 錯誤");
+  console.error(err);
+  process.exit(1);
+});
