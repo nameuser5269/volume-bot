@@ -10,9 +10,10 @@ console.log("FINMIND_TOKEN:", process.env.FINMIND_TOKEN ? "✅ 已設定" : "❌
 
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
 const CHANNEL_ID = process.env.DISCORD_CHANNEL_ID;
+const FINMIND_TOKEN = process.env.FINMIND_TOKEN;
 
-if (!DISCORD_TOKEN || !CHANNEL_ID) {
-  console.error("❌ Token 或 頻道 ID 沒有設定，請確認 Secrets 正確");
+if (!DISCORD_TOKEN || !CHANNEL_ID || !FINMIND_TOKEN) {
+  console.error("❌ Token、頻道 ID 或 FINMIND_TOKEN 沒有設定，請確認 Secrets 正確");
   process.exit(1);
 }
 

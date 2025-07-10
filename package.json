@@ -1,0 +1,15 @@
+{
+  "name": "volume-bot",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Discord bot for reporting high volume stocks",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node index.js --dry-run"
+  },
+  "dependencies": {
+    "discord.js": "^14.11.0",
+    "node-fetch": "^3.3.1"
+  }
+}
