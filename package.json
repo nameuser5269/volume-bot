@@ -1,0 +1,13 @@
+{
+  "name": "volume-bot",
+  "version": "1.0.0",
+  "description": "Discord bot that reports boom stocks volume",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.13.0"
+  }
+}
