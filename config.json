@@ -1,0 +1,5 @@
+{
+  "botToken": "${DISCORD_TOKEN}",
+  "channelId": "${DISCORD_CHANNEL_ID}",
+  "finmindToken": "${FINMIND_TOKEN}"
+}
